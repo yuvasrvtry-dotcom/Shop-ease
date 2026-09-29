@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopEase - Online Shopping</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+html{scroll-behavior:smooth}body{background:#f6f7fb;color:#222}
+header{background:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 12px #0001}
+.navbar{max-width:1200px;margin:auto;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.logo{font-size:26px;font-weight:bold;color:#6c3cff}.logo span{color:#ff4d6d}
+.nav-links{display:flex;gap:25px;list-style:none}.nav-links a{text-decoration:none;color:#333;font-weight:600}.nav-links a:hover{color:#6c3cff}
+.nav-icons{display:flex;gap:15px;align-items:center}.icon-btn{border:0;background:#f2f2f7;padding:10px 13px;border-radius:10px;cursor:pointer;font-size:16px}
+.cart-count{background:#ff4d6d;color:white;padding:2px 6px;border-radius:20px;font-size:11px;position:relative;top:-10px;left:-7px}
+.hero{min-height:520px;background:linear-gradient(120deg,#eee8ff,#fff1f4);display:flex;align-items:center}
+.hero-content{max-width:1200px;width:100%;margin:auto;padding:60px 25px;display:flex;align-items:center;justify-content:space-between;gap:40px}
+.hero-text{max-width:600px}.badge{display:inline-block;background:#6c3cff;color:white;padding:8px 15px;border-radius:30px;margin-bottom:18px;font-size:14px}
+.hero h1{font-size:55px;line-height:1.05;margin-bottom:20px}.hero h1 span{color:#6c3cff}
+.hero p{font-size:18px;color:#666;line-height:1.6;margin-bottom:28px}.shop-btn{border:0;background:#6c3cff;color:white;padding:14px 28px;border-radius:10px;font-size:16px;cursor:pointer;font-weight:bold}
+.hero-card{width:380px;height:380px;background:white;border-radius:35px;display:flex;align-items:center;justify-content:center;font-size:150px;box-shadow:0 20px 50px #6c3cff30}
+.features{max-width:1200px;margin:35px auto;padding:0 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.feature{background:white;padding:22px;border-radius:15px;box-shadow:0 4px 15px #0000000b}.feature b{display:block;margin:8px 0}.feature p{color:#777;font-size:14px}
+.section{max-width:1200px;margin:70px auto;padding:0 20px}.section-title{text-align:center;margin-bottom:30px}.section-title h2{font-size:32px}.section-title p{color:#777;margin-top:8px}
+.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:15px}.category{background:white;padding:25px 10px;text-align:center;border-radius:15px;cursor:pointer;transition:.2s;box-shadow:0 3px 12px #0000000b}.category:hover{transform:translateY(-5px)}.category-icon{font-size:40px;margin-bottom:10px}
+.shop-tools{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;gap:15px}.search{width:300px;padding:13px;border:1px solid #ddd;border-radius:10px;outline:none}select{padding:13px;border:1px solid #ddd;border-radius:10px;background:white}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.product{background:white;border-radius:17px;overflow:hidden;box-shadow:0 4px 15px #0000000d;transition:.2s}.product:hover{transform:translateY(-5px);box-shadow:0 10px 25px #00000015}
+.product-img{height:210px;background:#f1f2f8;display:flex;align-items:center;justify-content:center;font-size:90px;position:relative}.wish{position:absolute;top:12px;right:12px;border:0;width:35px;height:35px;border-radius:50%;background:white;cursor:pointer;font-size:18px}
+.product-info{padding:18px}.product-info h3{margin-bottom:8px}.product-info p{color:#777;font-size:14px;margin-bottom:10px}.rating{color:#f5a623;margin-bottom:8px}.price{font-size:20px;font-weight:bold;color:#6c3cff}.old-price{color:#999;text-decoration:line-through;font-size:14px;margin-left:5px}
+.add-btn{width:100%;margin-top:14px;padding:11px;border:0;background:#6c3cff;color:white;border-radius:8px;cursor:pointer;font-weight:bold}
+.offer{max-width:1200px;margin:60px auto;padding:45px;border-radius:25px;background:linear-gradient(110deg,#6c3cff,#9c65ff);color:white;display:flex;justify-content:space-between;align-items:center}.offer h2{font-size:35px;margin-bottom:10px}.offer button{padding:14px 25px;border:0;border-radius:10px;background:white;color:#6c3cff;font-weight:bold;cursor:pointer}
+footer{background:#17151e;color:white;padding:50px 20px 20px}.footer-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}footer h3{margin-bottom:15px}footer p{color:#bbb;line-height:1.7}footer a{display:block;color:#bbb;text-decoration:none;margin:10px 0}.copyright{text-align:center;border-top:1px solid #ffffff20;margin-top:35px;padding-top:20px;color:#aaa}
+.overlay{position:fixed;inset:0;background:#0008;display:none;z-index:2000}.cart{position:absolute;right:0;top:0;height:100%;width:400px;max-width:100%;background:white;padding:25px;overflow:auto}.cart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.close{border:0;background:#eee;border-radius:8px;padding:8px 12px;cursor:pointer}
+.cart-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #eee}.cart-item .emoji{font-size:40px}.cart-total{margin-top:25px;font-size:20px;font-weight:bold}.checkout{width:100%;margin-top:15px;padding:14px;border:0;border-radius:10px;background:#6c3cff;color:white;cursor:pointer;font-weight:bold}
+.modal-bg{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;z-index:3000;padding:20px}.modal{width:420px;max-width:100%;background:white;padding:30px;border-radius:18px}.modal h2{margin-bottom:20px}.input{width:100%;padding:13px;margin:8px 0;border:1px solid #ddd;border-radius:8px}.modal-btn{width:100%;padding:13px;border:0;background:#6c3cff;color:white;border-radius:8px;cursor:pointer;margin-top:10px}.product-modal-content{text-align:center}.big-product{font-size:100px;margin:20px}
+@media(max-width:900px){.nav-links{display:none}.hero-content{flex-direction:column;text-align:center}.hero h1{font-size:40px}.hero-card{width:280px;height:280px;font-size:100px}.features{grid-template-columns:repeat(2,1fr)}.categories{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.features,.products,.footer-grid{grid-template-columns:1fr}.categories{grid-template-columns:repeat(2,1fr)}.shop-tools{flex-direction:column;align-items:stretch}.search{width:100%}.offer{margin:30px 20px;padding:30px;flex-direction:column;gap:20px;text-align:center}}
+</style>
+</head>
+<body>
+<header><div class="navbar"><div class="logo">Shop<span>Ease</span></div><ul class="nav-links"><li><a href="#home">Home</a></li><li><a href="#categories">Categories</a></li><li><a href="#products">Products</a></li><li><a href="#offers">Offers</a></li><li><a href="#contact">Contact</a></li></ul><div class="nav-icons"><button class="icon-btn" onclick="openLogin()">👤</button><button class="icon-btn" onclick="openCart()">🛒<span class="cart-count" id="cartCount">0</span></button></div></div></header>
+<section class="hero" id="home"><div class="hero-content"><div class="hero-text"><span class="badge">🔥 Big Shopping Festival</span><h1>Shop Smart.<br><span>Live Better.</span></h1><p>Discover the latest fashion, electronics, accessories and more — all at amazing prices.</p><button class="shop-btn" onclick="document.getElementById('products').scrollIntoView()">Shop Now →</button></div><div class="hero-card">🛍️</div></div></section>
+<section class="features"><div class="feature">🚚<b>Free Delivery</b><p>Free delivery on orders above ₹999.</p></div><div class="feature">🔒<b>Secure Payment</b><p>Your payment information is protected.</p></div><div class="feature">🔄<b>Easy Returns</b><p>Simple and hassle-free returns.</p></div><div class="feature">🎧<b>24/7 Support</b><p>Our support team is always available.</p></div></section>
+<section class="section" id="categories"><div class="section-title"><h2>Shop by Category</h2><p>Find everything you need</p></div><div class="categories">
+<div class="category" onclick="filterCategory('Fashion')"><div class="category-icon">👕</div>Fashion</div><div class="category" onclick="filterCategory('Electronics')"><div class="category-icon">📱</div>Electronics</div><div class="category" onclick="filterCategory('Shoes')"><div class="category-icon">👟</div>Shoes</div><div class="category" onclick="filterCategory('Beauty')"><div class="category-icon">💄</div>Beauty</div><div class="category" onclick="filterCategory('Home')"><div class="category-icon">🏠</div>Home</div><div class="category" onclick="filterCategory('Accessories')"><div class="category-icon">⌚</div>Accessories</div>
+</div></section>
+<section class="section" id="products"><div class="section-title"><h2>Featured Products</h2><p>Our most popular products</p></div><div class="shop-tools"><input class="search" id="search" placeholder="🔍 Search products..." onkeyup="searchProducts()"><select id="sort" onchange="sortProducts()"><option value="default">Sort Products</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option></select></div><div class="products" id="productList"></div></section>
+<section class="offer" id="offers"><div><h2>Special Offer 🎉</h2><p>Get up to 50% OFF on selected products.</p></div><button onclick="showOffer()">View Offers</button></section>
+<footer id="contact"><div class="footer-grid"><div><h3>ShopEase</h3><p>Your one-stop online shopping destination. Quality products, great prices and excellent service.</p></div><div><h3>Quick Links</h3><a href="#home">Home</a><a href="#products">Products</a><a href="#categories">Categories</a><a href="#offers">Offers</a></div><div><h3>Customer Service</h3><a href="#">Help Center</a><a href="#">Returns</a><a href="#">Shipping</a><a href="#">Privacy Policy</a></div><div><h3>Contact</h3><p>📧 support@shopease.com</p><p>📞 +91 98765 43210</p><p>📍 Tamil Nadu, India</p></div></div><div class="copyright">© 2026 ShopEase. All Rights Reserved.</div></footer>
+<div class="overlay" id="cartOverlay"><div class="cart"><div class="cart-head"><h2>🛒 Your Cart</h2><button class="close" onclick="closeCart()">✕</button></div><div id="cartItems"></div><div class="cart-total">Total: ₹<span id="cartTotal">0</span></div><button class="checkout" onclick="checkout()">Proceed to Checkout</button></div></div>
+<div class="modal-bg" id="loginModal"><div class="modal"><div style="text-align:right"><button class="close" onclick="closeLogin()">✕</button></div><h2>Welcome Back 👋</h2><input class="input" id="email" type="email" placeholder="Email Address"><input class="input" id="password" type="password" placeholder="Password"><button class="modal-btn" onclick="login()">Login</button><p style="text-align:center;margin-top:15px;color:#777">Don't have an account? <b>Register</b></p></div></div>
+<div class="modal-bg" id="productModal"><div class="modal product-modal-content"><div style="text-align:right"><button class="close" onclick="closeProduct()">✕</button></div><div class="big-product" id="modalEmoji"></div><h2 id="modalName"></h2><p id="modalDescription" style="color:#777;margin:15px 0"></p><h2 style="color:#6c3cff">₹<span id="modalPrice"></span></h2><button class="modal-btn" id="modalAdd">Add to Cart</button></div></div>
+<script>
+const products=[
+{id:1,name:"Classic T-Shirt",category:"Fashion",price:599,old:999,emoji:"👕",description:"Comfortable premium cotton T-shirt."},
+{id:2,name:"Smartphone Pro",category:"Electronics",price:24999,old:29999,emoji:"📱",description:"Modern smartphone with powerful performance."},
+{id:3,name:"Running Shoes",category:"Shoes",price:1499,old:2499,emoji:"👟",description:"Lightweight shoes perfect for everyday use."},
+{id:4,name:"Wireless Headphones",category:"Electronics",price:1999,old:2999,emoji:"🎧",description:"Enjoy high quality wireless audio."},
+{id:5,name:"Luxury Watch",category:"Accessories",price:2999,old:4999,emoji:"⌚",description:"Stylish watch for a premium look."},
+{id:6,name:"Face Care Kit",category:"Beauty",price:899,old:1299,emoji:"💄",description:"Complete daily skincare essentials."},
+{id:7,name:"Home Lamp",category:"Home",price:799,old:1199,emoji:"💡",description:"Beautiful modern lamp for your home."},
+{id:8,name:"Backpack",category:"Fashion",price:999,old:1599,emoji:"🎒",description:"Durable backpack for college and travel."},
+{id:9,name:"Bluetooth Speaker",category:"Electronics",price:1299,old:1999,emoji:"🔊",description:"Portable speaker with powerful sound."},
+{id:10,name:"Sunglasses",category:"Accessories",price:699,old:999,emoji:"🕶️",description:"Trendy sunglasses with UV protection."},
+{id:11,name:"Sports Cap",category:"Fashion",price:399,old:699,emoji:"🧢",description:"Comfortable cap for outdoor activities."},
+{id:12,name:"Coffee Maker",category:"Home",price:2499,old:3499,emoji:"☕",description:"Easy-to-use coffee maker for your home."}
+];
+let cart=[];
+function displayProducts(list=products){const el=document.getElementById("productList");el.innerHTML="";if(!list.length){el.innerHTML="<h3>No products found.</h3>";return}list.forEach(p=>{el.innerHTML+=`<div class="product"><div class="product-img"><button class="wish" onclick="wishlist(this)">♡</button><span>${p.emoji}</span></div><div class="product-info"><h3>${p.name}</h3><p>${p.description}</p><div class="rating">★★★★★</div><span class="price">₹${p.price.toLocaleString()}</span> <span class="old-price">₹${p.old.toLocaleString()}</span><button class="add-btn" onclick="addToCart(${p.id})">Add to Cart</button><button class="add-btn" style="background:#eee;color:#333" onclick="viewProduct(${p.id})">View Details</button></div></div>`})}
+function addToCart(id){const p=products.find(x=>x.id===id),e=cart.find(x=>x.id===id);e?e.qty++:cart.push({...p,qty:1});updateCart();alert(p.name+" added to cart! 🛒")}
+function updateCart(){let count=0,total=0;cart.forEach(x=>{count+=x.qty;total+=x.price*x.qty});document.getElementById("cartCount").innerText=count;document.getElementById("cartTotal").innerText=total.toLocaleString();const el=document.getElementById("cartItems");if(!cart.length){el.innerHTML='<div style="text-align:center;padding:50px 0;color:#777">🛒<br><br>Your cart is empty.</div>';return}el.innerHTML="";cart.forEach(x=>{el.innerHTML+=`<div class="cart-item"><div class="emoji">${x.emoji}</div><div style="flex:1"><b>${x.name}</b><p>₹${x.price.toLocaleString()}</p><div><button onclick="changeQty(${x.id},-1)">−</button> ${x.qty} <button onclick="changeQty(${x.id},1)">+</button></div></div><button class="close" onclick="removeItem(${x.id})">🗑</button></div>`})}
+function changeQty(id,v){const x=cart.find(p=>p.id===id);x.qty+=v;if(x.qty<=0)cart=cart.filter(p=>p.id!==id);updateCart()}
+function removeItem(id){cart=cart.filter(p=>p.id!==id);updateCart()}
+function openCart(){document.getElementById("cartOverlay").style.display="block";updateCart()}function closeCart(){document.getElementById("cartOverlay").style.display="none"}
+function searchProducts(){const t=document.getElementById("search").value.toLowerCase();displayProducts(products.filter(p=>p.name.toLowerCase().includes(t)||p.category.toLowerCase().includes(t)))}
+function filterCategory(c){document.getElementById("search").value=c;displayProducts(products.filter(p=>p.category===c));document.getElementById("products").scrollIntoView()}
+function sortProducts(){const t=document.getElementById("sort").value,r=[...products];if(t==="low")r.sort((a,b)=>a.price-b.price);if(t==="high")r.sort((a,b)=>b.price-a.price);displayProducts(r)}
+function wishlist(b){b.innerText=b.innerText==="♡"?"♥":"♡";b.style.color=b.innerText==="♥"?"red":"black"}
+function openLogin(){document.getElementById("loginModal").style.display="flex"}function closeLogin(){document.getElementById("loginModal").style.display="none"}
+function login(){if(!email.value||!password.value)return alert("Please enter email and password.");alert("Login successful! 🎉");closeLogin()}
+function viewProduct(id){const p=products.find(x=>x.id===id);modalEmoji.innerText=p.emoji;modalName.innerText=p.name;modalDescription.innerText=p.description;modalPrice.innerText=p.price.toLocaleString();modalAdd.onclick=()=>{addToCart(p.id);closeProduct()};productModal.style.display="flex"}
+function closeProduct(){productModal.style.display="none"}
+function checkout(){if(!cart.length)return alert("Your cart is empty!");alert("Order placed successfully! 🎉\n\nThank you for shopping with ShopEase.");cart=[];updateCart();closeCart()}
+function showOffer(){alert("🔥 SPECIAL OFFERS 🔥\n\nFashion - Up to 50% OFF\nElectronics - Up to 30% OFF\nShoes - Up to 40% OFF\n\nLimited time offer!")}
+displayProducts();updateCart();
+</script>
+</body>
+</html>
